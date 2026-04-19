@@ -95,6 +95,61 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── LIVE DEMO ────────────────────────────────────────────────────── */}
+      <section className="w-full bg-white py-20 border-b border-stone-200">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          {/* Label + copy */}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+            <div>
+              <Badge>Live Demo</Badge>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F1A2E] leading-tight">
+                See what the shift looks like inside ShiftVoice
+              </h2>
+              <p className="mt-3 text-stone-500 text-base max-w-xl leading-relaxed">
+                Real sample data. Click any event card to see the full operator note alongside machine state at the moment of capture.
+              </p>
+            </div>
+            <a
+              href="https://tidycal.com/lesykua/shift-voice-meeting"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 bg-amber-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-amber-600 transition-colors text-sm shadow-sm"
+            >
+              Book a Discovery Call
+            </a>
+          </div>
+
+          {/* Browser-chrome frame */}
+          <div className="rounded-2xl overflow-hidden border border-stone-200 shadow-2xl shadow-stone-300/40">
+            {/* Fake browser chrome bar */}
+            <div className="bg-stone-100 border-b border-stone-200 px-4 py-3 flex items-center gap-3">
+              <div className="flex gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-red-400" />
+                <span className="w-3 h-3 rounded-full bg-amber-400" />
+                <span className="w-3 h-3 rounded-full bg-green-400" />
+              </div>
+              <div className="flex-1 bg-white border border-stone-200 rounded-md px-3 py-1 text-xs text-stone-400 font-mono">
+                app.shiftvoice.io / demo
+              </div>
+              <span className="text-xs text-stone-400 font-medium hidden sm:block">Interactive demo — sample data</span>
+            </div>
+
+            {/* The dashboard iframe */}
+            <iframe
+              src="/dashboard.html"
+              title="ShiftVoice — live operator notes demo"
+              className="w-full border-0"
+              style={{ height: "780px" }}
+              loading="lazy"
+            />
+          </div>
+
+          <p className="mt-4 text-xs text-stone-400 text-center">
+            Filters, search, and card drill-down are all live. Data shown is representative sample data from a pilot deployment.
+          </p>
+        </div>
+      </section>
+
       {/* ─── THE GAP ──────────────────────────────────────────────────────── */}
       <section className="w-full bg-stone-50 py-24 border-b border-stone-200">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">

@@ -446,112 +446,102 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── OUTCOMES ─────────────────────────────────────────────────────── */}
-      <section className="w-full py-20 border-t border-[rgba(18,35,44,0.1)]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <span className="inline-block bg-[rgba(15,95,104,0.1)] text-[#0f5f68] text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
-            Proven Outcomes
-          </span>
-          <h2
-            className="font-extrabold text-[#12232c] leading-none mb-3"
-            style={{ fontFamily: 'var(--font-barlow-condensed)', fontSize: 'clamp(2rem, 3.5vw, 3.5rem)' }}
-          >
-            What operational memory looks like in practice
-          </h2>
-          <p className="text-[#687d85] text-sm mb-14 max-w-xl">
-            Results from a 9-week pilot at a mid-sized manufacturing plant in Sweden. Measured, not projected.
-          </p>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {[
-              { stat: "73%", label: "reduction in handover time", sub: "15 min → 4 min", change: "Structured records replace verbal recaps" },
-              { stat: "50%", label: "fewer clarification loops", sub: null, change: "Every event has an owner, a log, and evidence" },
-              { stat: "Hours →\nMinutes", label: "time-to-first-suspect", sub: null, change: "Investigations start with context already assembled" },
-              { stat: "Auto", label: "recurring issues surface", sub: null, change: "Frequency and context replace anecdote" },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="bg-[rgba(255,251,245,0.85)] rounded-2xl border border-[rgba(18,35,44,0.12)] p-8 flex gap-6 items-start shadow-sm"
-              >
-                <div className="flex-shrink-0">
-                  <p
-                    className="font-extrabold text-[#0f5f68] leading-none whitespace-pre-line text-4xl"
-                    style={{ fontFamily: 'var(--font-barlow-condensed)' }}
-                  >
-                    {item.stat}
-                  </p>
-                  {item.sub && <p className="text-xs text-[#687d85] mt-1">{item.sub}</p>}
-                </div>
-                <div className="border-l border-[rgba(18,35,44,0.12)] pl-6">
-                  <p className="text-[#12232c] font-semibold text-sm leading-snug mb-1">{item.label}</p>
-                  <p className="text-[#687d85] text-sm">{item.change}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── PILOT ────────────────────────────────────────────────────────── */}
+      {/* ─── OUTCOMES + PILOT ─────────────────────────────────────────────── */}
       <section id="pilot" className="w-full py-20 border-t border-[rgba(18,35,44,0.1)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <span className="inline-block bg-[rgba(15,95,104,0.1)] text-[#0f5f68] text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
-            Pilot Program
-          </span>
-          <h2
-            className="font-extrabold text-[#12232c] leading-none mb-3"
-            style={{ fontFamily: 'var(--font-barlow-condensed)', fontSize: 'clamp(2rem, 3.5vw, 3.5rem)' }}
-          >
-            One station. One shift team. 9 weeks to proof.
-          </h2>
-          <p className="text-[#687d85] text-base max-w-2xl mb-14 leading-relaxed">
-            We don&apos;t ask for a platform decision. We ask for one station and nine weeks to prove that operational memory works — with your vocabulary, your operations, your team.
-          </p>
-          <div className="grid md:grid-cols-4 gap-4 mb-14">
-            {[
-              { phase: "Mapping + Baseline", weeks: "Week 1", what: "Document current handover process, capture baseline metrics, identify target events and vocabulary", accent: "#0f5f68" },
-              { phase: "Deploy + Connect", weeks: "Weeks 2–4", what: "Install, connect data systems if applicable, calibrate event taxonomy to your plant", accent: "#c68a22" },
-              { phase: "Run + Tune + Measure", weeks: "Weeks 5–7", what: "Live capture. Iterate. Track adoption and handover metrics", accent: "#2f8f63" },
-              { phase: "Proof + Plan", weeks: "Weeks 8–9", what: "Results against agreed criteria. Expansion roadmap with ROI estimate", accent: "#687d85" },
-            ].map((row) => (
-              <div
-                key={row.phase}
-                className="bg-[rgba(255,251,245,0.85)] border border-[rgba(18,35,44,0.12)] rounded-2xl p-6 shadow-sm"
-                style={{ borderTop: `3px solid ${row.accent}` }}
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+
+            {/* Left: outcomes */}
+            <div>
+              <span className="inline-block bg-[rgba(15,95,104,0.1)] text-[#0f5f68] text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
+                Proven Outcomes
+              </span>
+              <h2
+                className="font-extrabold text-[#12232c] leading-none mb-3"
+                style={{ fontFamily: 'var(--font-barlow-condensed)', fontSize: 'clamp(2rem, 3vw, 3rem)' }}
               >
-                <p className="text-xs font-bold text-[#687d85] mb-1">{row.weeks}</p>
-                <h3
-                  className="font-bold text-[#12232c] text-base mb-3"
-                  style={{ fontFamily: 'var(--font-barlow-condensed)', letterSpacing: '0.04em' }}
-                >
-                  {row.phase}
-                </h3>
-                <p className="text-[#687d85] text-xs leading-relaxed">{row.what}</p>
+                What operational memory looks like in practice
+              </h2>
+              <p className="text-[#687d85] text-sm mb-10 leading-relaxed">
+                Results from a 9-week pilot in Sweden. Measured, not projected.
+              </p>
+              <div className="grid grid-cols-2 gap-5">
+                {[
+                  { stat: "73%", label: "reduction in handover time", sub: "15 min → 4 min" },
+                  { stat: "50%", label: "fewer clarification loops", sub: "Every event has an owner" },
+                  { stat: "Hours →\nMin", label: "time-to-first-suspect", sub: "Context already assembled" },
+                  { stat: "Auto", label: "recurring issues surface", sub: "Frequency replaces anecdote" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="bg-[rgba(255,251,245,0.85)] rounded-2xl border border-[rgba(18,35,44,0.12)] p-6 shadow-sm"
+                  >
+                    <p
+                      className="font-extrabold text-[#0f5f68] leading-none whitespace-pre-line mb-2"
+                      style={{ fontFamily: 'var(--font-barlow-condensed)', fontSize: '2rem' }}
+                    >
+                      {item.stat}
+                    </p>
+                    <p className="text-[#12232c] font-semibold text-xs leading-snug mb-1">{item.label}</p>
+                    <p className="text-[#687d85] text-xs">{item.sub}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <p className="text-xs uppercase tracking-widest text-[#687d85] font-semibold mb-5">Success Metrics</p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              "Events captured per shift (adoption)",
-              "Handover duration before vs after",
-              "Clarification loop frequency (target: 30%+ reduction)",
-              "Time-to-first-suspect on 2–3 real cases",
-            ].map((metric) => (
-              <div
-                key={metric}
-                className="bg-[rgba(255,251,245,0.85)] border border-[rgba(18,35,44,0.12)] rounded-xl px-5 py-4 shadow-sm"
+            </div>
+
+            {/* Right: pilot */}
+            <div>
+              <span className="inline-block bg-[rgba(15,95,104,0.1)] text-[#0f5f68] text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
+                Pilot Program
+              </span>
+              <h2
+                className="font-extrabold text-[#12232c] leading-none mb-3"
+                style={{ fontFamily: 'var(--font-barlow-condensed)', fontSize: 'clamp(2rem, 3vw, 3rem)' }}
               >
-                <span className="text-[#687d85] text-sm leading-snug">{metric}</span>
+                One station. One shift team. 9 weeks to proof.
+              </h2>
+              <p className="text-[#687d85] text-sm mb-10 leading-relaxed">
+                We don&apos;t ask for a platform decision — just one station and nine weeks to prove it works with your vocabulary, your operations, your team.
+              </p>
+              <div className="flex flex-col gap-3">
+                {[
+                  { phase: "Mapping + Baseline", weeks: "Week 1", what: "Document handover process, capture baseline metrics, identify event vocabulary", accent: "#0f5f68" },
+                  { phase: "Deploy + Connect", weeks: "Weeks 2–4", what: "Install, connect data systems if applicable, calibrate taxonomy to your plant", accent: "#c68a22" },
+                  { phase: "Run + Tune + Measure", weeks: "Weeks 5–7", what: "Live capture. Iterate. Track adoption and handover metrics", accent: "#2f8f63" },
+                  { phase: "Proof + Plan", weeks: "Weeks 8–9", what: "Results against agreed criteria. Expansion roadmap with ROI estimate", accent: "#687d85" },
+                ].map((row) => (
+                  <div
+                    key={row.phase}
+                    className="bg-[rgba(255,251,245,0.85)] border border-[rgba(18,35,44,0.12)] rounded-xl p-5 flex gap-4 items-start shadow-sm"
+                    style={{ borderLeft: `3px solid ${row.accent}` }}
+                  >
+                    <div className="flex-shrink-0 pt-0.5">
+                      <p className="text-xs font-bold text-[#687d85]">{row.weeks}</p>
+                    </div>
+                    <div>
+                      <h3
+                        className="font-bold text-[#12232c] text-sm mb-1"
+                        style={{ fontFamily: 'var(--font-barlow-condensed)', letterSpacing: '0.04em' }}
+                      >
+                        {row.phase}
+                      </h3>
+                      <p className="text-[#687d85] text-xs leading-relaxed">{row.what}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* ─── ABOUT (dark) ─────────────────────────────────────────────────── */}
+      {/* ─── ABOUT + TEAM (dark) ──────────────────────────────────────────── */}
       <section className="w-full py-20 bg-[#12232c]">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="grid md:grid-cols-2 gap-16 items-start">
+
+            {/* Left: narrative */}
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-[rgba(255,251,245,0.35)] mb-6">
                 About ShiftVoice
@@ -569,86 +559,78 @@ export default function Home() {
                 We started ShiftVoice because we saw the same pattern everywhere: smart operators, experienced engineers, and dedicated managers — all limited by the fact that operational knowledge evaporates every time a shift ends.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                {
-                  label: "Mission",
-                  text: "Give manufacturing plants the operational memory they've been running without.",
-                },
-                {
-                  label: "Approach",
-                  text: "Pilot-first. One station, one shift team, 9 weeks to proof.",
-                },
-                {
-                  label: "Stage",
-                  text: "Post-pilot. Working with 2 manufacturing facilities. Raising seed round.",
-                },
-                {
-                  label: "Privacy",
-                  text: "No audio stored. Structured text only. Role-based access. Your data stays in your plant.",
-                },
-              ].map((card) => (
-                <div key={card.label} className="bg-white/5 border border-white/10 rounded-xl p-5">
-                  <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: '#7ec8cf' }}>
-                    {card.label}
-                  </p>
-                  <p className="text-[rgba(255,251,245,0.55)] text-sm leading-relaxed">{card.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ─── TEAM ─────────────────────────────────────────────────────────── */}
-      <section className="w-full py-20 border-t border-[rgba(18,35,44,0.1)]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <span className="inline-block bg-[rgba(15,95,104,0.1)] text-[#0f5f68] text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
-            Team
-          </span>
-          <h2
-            className="font-extrabold text-[#12232c] leading-none mb-14"
-            style={{ fontFamily: 'var(--font-barlow-condensed)', fontSize: 'clamp(2rem, 3.5vw, 3.5rem)' }}
-          >
-            Operators. Engineers. Founders.
-          </h2>
-          <div className="flex flex-col md:flex-row gap-8 items-start">
-            <div className="bg-[rgba(255,251,245,0.85)] border border-[rgba(18,35,44,0.12)] rounded-2xl p-8 w-full md:max-w-sm shadow-sm">
-              <div className="flex items-center gap-5 mb-6">
-                <div className="w-16 h-16 rounded-full bg-[#0f5f68] flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-2xl font-bold">O</span>
+            {/* Right: founder cards */}
+            <div className="flex flex-col gap-5">
+
+              {/* Oleksandr */}
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-14 h-14 rounded-full bg-[#0f5f68] flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-xl font-bold">O</span>
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold text-base">Oleksandr Khimiak</h3>
+                    <p className="text-[rgba(255,251,245,0.45)] text-sm">CEO &amp; Co-Founder</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-[#12232c] font-bold text-lg">Oleksandr Khimiak</h3>
-                  <p className="text-[#0f5f68] text-sm font-semibold">CEO &amp; Co-Founder</p>
+                <p className="text-[rgba(255,251,245,0.5)] text-sm leading-relaxed mb-5">
+                  Manufacturing transformation &amp; commercial strategy, 15+ years. Worked inside plants across Europe. Knows what actually happens at shift end.
+                </p>
+                <div className="flex gap-3">
+                  <a
+                    href="https://www.linkedin.com/in/oleksandr-khimiak/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-xs font-semibold text-white bg-[#0A66C2] px-4 py-2 rounded-lg hover:bg-[#004182] transition-colors"
+                  >
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                    LinkedIn
+                  </a>
+                  <a
+                    href="mailto:oleks@theadvisource.com"
+                    className="flex items-center gap-2 text-xs font-semibold text-[rgba(255,251,245,0.5)] border border-white/15 px-4 py-2 rounded-lg hover:bg-white/5 transition-colors"
+                  >
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    Email
+                  </a>
                 </div>
               </div>
-              <p className="text-[#687d85] text-sm leading-relaxed mb-6">
-                Manufacturing transformation &amp; commercial strategy, 15+ years. Worked inside plants. Knows what actually happens at shift end.
-              </p>
-              <div className="flex gap-3">
-                <a
-                  href="https://www.linkedin.com/in/oleksandr-khimiak/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-xs font-semibold text-white bg-[#0A66C2] px-4 py-2 rounded-lg hover:bg-[#004182] transition-colors"
-                >
-                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                  </svg>
-                  LinkedIn
-                </a>
-                <a
-                  href="mailto:oleks@theadvisource.com"
-                  className="flex items-center gap-2 text-xs font-semibold text-[#687d85] border border-[rgba(18,35,44,0.15)] px-4 py-2 rounded-lg hover:bg-[rgba(18,35,44,0.04)] transition-colors"
-                >
-                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <polyline points="22,6 12,13 2,6" />
-                  </svg>
-                  Email
-                </a>
+
+              {/* Roman */}
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-14 h-14 rounded-full bg-[#687d85] flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-xl font-bold">R</span>
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold text-base">Roman Reznikov</h3>
+                    <p className="text-[rgba(255,251,245,0.45)] text-sm">CTO &amp; Co-Founder</p>
+                  </div>
+                </div>
+                <p className="text-[rgba(255,251,245,0.5)] text-sm leading-relaxed mb-5">
+                  IT services &amp; engineering leadership, 14+ years. Builds systems that work in real operational conditions — not just in demos.
+                </p>
+                <div className="flex gap-3">
+                  <a
+                    href="https://www.linkedin.com/in/rreznikov/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-xs font-semibold text-white bg-[#0A66C2] px-4 py-2 rounded-lg hover:bg-[#004182] transition-colors"
+                  >
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                    LinkedIn
+                  </a>
+                </div>
               </div>
+
             </div>
           </div>
         </div>

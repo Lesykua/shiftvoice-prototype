@@ -66,6 +66,8 @@ function DemoScriptCard() {
 
 type Step = 'capture' | 'review' | 'saved'
 
+const SHIFT_WINDOW_MS = 8 * 60 * 60 * 1000 // 8 hours = one shift
+
 function getDeviceId(): string {
   if (typeof window === 'undefined') return 'unknown'
   let id = localStorage.getItem('shiftvoice_device_id')
@@ -82,12 +84,36 @@ function saveNoteLocally(note: ShiftNote) {
   localStorage.setItem('shiftvoice_notes', JSON.stringify(existing))
 }
 
+/** Returns the most recent note from this shift that shares machine or reason with the new note. */
+function findRelatedNote(newNote: ShiftNote, existingNotes: ShiftNote[]): ShiftNote | null {
+  const shiftStart = Date.now() - SHIFT_WINDOW_MS
+  for (const n of existingNotes) {
+    if (n.id === newNote.id) continue
+    if (new Date(n.createdAt).getTime() < shiftStart) continue
+    const sameMachine =
+      n.structured.machine &&
+      newNote.structured.machine &&
+      n.structured.machine.toLowerCase() === newNote.structured.machine.toLowerCase()
+    const sameReason =
+      n.structured.reason &&
+      newNote.structured.reason &&
+      n.structured.reason.toLowerCase() === newNote.structured.reason.toLowerCase()
+    if (sameMachine || sameReason) return n
+  }
+  return null
+}
+
+function formatTime(iso: string) {
+  return new Date(iso).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+}
+
 export default function CapturePage() {
   const [step, setStep] = useState<Step>('capture')
   const [transcript, setTranscript] = useState<string>('')
   const [savedNote, setSavedNote] = useState<ShiftNote | null>(null)
   const [savedNotes, setSavedNotes] = useState<ShiftNote[]>([])
   const [deviceId, setDeviceId] = useState('loading…')
+  const [relatedNote, setRelatedNote] = useState<ShiftNote | null>(null)
 
   useEffect(() => {
     setDeviceId(getDeviceId())
@@ -102,6 +128,9 @@ export default function CapturePage() {
 
   const handleSave = (note: ShiftNote) => {
     saveNoteLocally(note)
+    // Detect related note before updating savedNotes state
+    const related = findRelatedNote(note, savedNotes)
+    setRelatedNote(related)
     setSavedNote(note)
     setSavedNotes(prev => [note, ...prev])
     setStep('saved')
@@ -110,6 +139,7 @@ export default function CapturePage() {
   const handleNew = () => {
     setTranscript('')
     setSavedNote(null)
+    setRelatedNote(null)
     setStep('capture')
   }
 
@@ -245,6 +275,33 @@ export default function CapturePage() {
                 </div>
               )}
             </div>
+
+            {/* Related note banner */}
+            {relatedNote && (
+              <div
+                className="w-full rounded-2xl p-5 flex flex-col gap-2"
+                style={{ background: 'rgba(47,143,99,0.08)', border: '1px solid rgba(47,143,99,0.3)' }}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-base">🔗</span>
+                  <p className="text-sm font-semibold" style={{ color: '#2f8f63' }}>
+                    Looks like a follow-up
+                  </p>
+                </div>
+                <p className="text-xs leading-relaxed" style={{ color: '#687d85' }}>
+                  This note matches your{' '}
+                  <strong style={{ color: '#12232c' }}>{formatTime(relatedNote.createdAt)}</strong>{' '}
+                  note
+                  {relatedNote.structured.machine
+                    ? ` on ${relatedNote.structured.machine}`
+                    : ''}
+                  {relatedNote.structured.reason
+                    ? ` — ${relatedNote.structured.reason}`
+                    : ''}
+                  . Both are saved separately in this shift&apos;s log.
+                </p>
+              </div>
+            )}
 
             <button
               onClick={handleNew}

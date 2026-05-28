@@ -1,4 +1,7 @@
+import { redirect } from 'next/navigation'
+
 export default function Home() {
+  redirect('/capture')
   return (
     <div className="w-full min-h-screen text-[#12232c]">
 
